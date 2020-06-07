@@ -1,15 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
+        function computerPlay() {
+            let randomNumber = Math.floor(Math.random() * 3);
+            if (randomNumber == 0) {
+                return 'Rock';
+            }
+            if (randomNumber == 1) {
+                return 'Paper';
+            }
+            return 'Scissors';
+        }
 
-        
+
+        function playRound(playerSelection, computerSelection) {
+            //r>s , s>p, p>r
+            let playerSelectionLowerCase = playerSelection.toLowerCase();
+            let computerSelectionLowerCase = computerSelection.toLowerCase();
+
+            if (playerSelectionLowerCase === 'rock' && computerSelectionLowerCase === 'scissors') {
+                return "win";
+            }
+
+            if (playerSelectionLowerCase === 'rock' && computerSelectionLowerCase === 'paper') {
+                return "lose"
+            }
+
+            if (playerSelectionLowerCase === 'paper' && computerSelectionLowerCase === 'rock') {
+                return "win"
+            }
+
+            if (playerSelectionLowerCase === 'paper' && computerSelectionLowerCase === 'scissors') {
+                return "lose"
+            }
+
+            if (playerSelectionLowerCase === 'scissors' && computerSelectionLowerCase === 'paper') {
+                return "win"
+            }
+
+            if (playerSelectionLowerCase === 'scissors' && computerSelectionLowerCase === 'rock') {
+                return "lose"
+            }
+
+            return "draw"
+
+        }
+
+        function game() {
+            let wins=0;
+            let losses=0;
+            let ties=0;
+            for(let i=0;i<5;i++){
+                let playerSelection = window.prompt("Input Choice");
+                let computerSelection = computerPlay();
+                let result = playRound(playerSelection, computerSelection);
+
+                if(result==="win"){
+                    console.log(`Player wins! ${playerSelection} beats ${computerSelection}`)
+                    wins++;
+                }
+
+                if(result==="lose"){
+                    console.log(`Computer wins! ${computerSelection} beats  ${playerSelection}`)
+                    losses++;
+                }
+
+                if(result==="draw"){
+                    console.log(`It's a draw! ${playerSelection} matches ${computerSelection}`)
+                    ties++;
+                }
+
+            
+            }
+
+            let result;
+            if(wins === losses){
+                console.log(`Final Result = DRAW! Player=${wins} Computer=${losses} Ties=${ties}`)
+            }
+
+            if(wins<losses){
+                console.log(`Final Result  = DEFEAT! Player=${wins} Computer=${losses} Ties=${ties}`)
+
+            }
+            else{
+                 console.log(`Final Result  = VICTORY! Player=${wins} Computer=${losses} Ties=${ties}`)
+            }
+
+
+
+           
+
+        }
+
+        game();
+
+
     </script>
-    
+
 </body>
+
 </html>
